@@ -66,5 +66,22 @@
 #
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        
+        '''
+        i < len循环，nums[i] = val就del nums[i], 进入下一轮循环；
+                   不相等则i自增
+        ---
+        len = 0，return 0
+        '''
+        if(len(nums) == 0):
+            return 0
+        i = 0
+        while(i < len(nums)):
+            if(nums[i] == val):
+                del nums[i]
+                continue
+            i += 1
+        return len(nums)
+        '''
+        1. 循环利用的自增变量，记得提前定义
+        '''
 
