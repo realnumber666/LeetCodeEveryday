@@ -81,6 +81,7 @@ class Solution:
     def romanToInt(self, s: str) -> int:
         # 三种特殊情况单列, 若碰到I X C进行判断，flag=i，下一次轮匹配，配上了删一个数字，加一个结果数字，没配上直接加原数字，flag=0
         # 初始化一个字典来匹配
+        # 要点：配到I X C后，下一个如果配上、没配上、依旧是IXC，需要特别考虑
         sym = {'I': 1, 'V':5, 'X': 10,'L': 50, 'C': 100, 'D': 500, 'M': 1000}
         flag = None
         res = 0
@@ -102,11 +103,9 @@ class Solution:
                         carry = 400
                     elif(i == 'M'):
                         carry = 900                        
-                if(carry != 0):
-                    print(flag, sym[flag], carry)
+                if(carry != 0):                    
                     res = res - sym[flag] + carry
                     carry = 0
-                    print(res)
                     flag = None
                     continue
                 else:
