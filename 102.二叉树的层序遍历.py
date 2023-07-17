@@ -14,26 +14,24 @@
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         res = []
-        if root is None:
+        if not root:
             return res
         
         cur_layer = [root]
+        next_layer = []
+
         while len(cur_layer) > 0:
-            res.append([node.val for node in cur_layer])
-
-            next_layer = []
-            for node in cur_layer:
-                if node.left:
-                    next_layer.append(node.left)
-                if node.right:
-                    next_layer.append(node.right)
-
+            for n in cur_layer:
+                if n.left:
+                    next_layer.append(n.left)
+                if n.right:
+                    next_layer.append(n.right)
+        
+            res.append([n.val for n in cur_layer])
             cur_layer = next_layer
+            next_layer = []
         
-        return res
-        
-
-        
+        return res  
 
 # @lc code=end
 
